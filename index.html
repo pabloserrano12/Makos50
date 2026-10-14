@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0f1a">
+<title>Expediente Familiar</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top" id="top" hidden>
+  <div class="bar" aria-hidden="true"><i id="barFill"></i></div>
+  <nav id="nav" aria-label="Expedientes"></nav>
+</header>
+
+<main>
+  <section class="phase" id="s0" data-step="0">
+    <div class="cover">
+      <p class="meta">Archivo nº 0001-A · Acceso nivel 3</p>
+      <div class="stamp">CONFIDENCIAL</div>
+      <h1 class="title">EXPEDIENTE<br>FAMILIAR</h1>
+      <p class="lead">Acceso restringido. Se requiere autorización.</p>
+      <button class="btn" id="start" type="button">Iniciar misión</button>
+      <div class="scan" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="phase" id="s1" data-step="1" hidden>
+    <article class="card">
+      <div class="stamp small">CONFIDENCIAL</div>
+      <p class="meta">Documento 01 de 03</p>
+      <h2>EXPEDIENTE 01 — AUTORIZACIÓN</h2>
+      <p>La primera prueba ya ha sido resuelta fuera de este sistema. Introduce la clave obtenida para verificar tu autorización.</p>
+      <form class="check" data-step="1" autocomplete="off" novalidate>
+        <label for="i1">Clave de acceso</label>
+        <input id="i1" type="text" maxlength="12" autocapitalize="characters" autocorrect="off" spellcheck="false" enterkeyhint="go">
+        <button class="btn" type="submit">Verificar</button>
+        <p class="msg" role="status" aria-live="polite"></p>
+      </form>
+      <button class="btn ghost next" data-goto="2" type="button" hidden>Continuar</button>
+    </article>
+  </section>
+
+  <section class="phase" id="s2" data-step="2" hidden>
+    <article class="card">
+      <figure class="photo" data-file="images/partido.jpeg">
+        <img src="images/partido.jpeg" alt="Mi padre en un partido de baloncesto en Los Ángeles" onerror="this.parentNode.classList.add('missing')">
+        <figcaption>Prueba fotográfica A</figcaption>
+      </figure>
+      <p class="meta">Documento 02 de 03</p>
+      <h2>EXPEDIENTE 02 — ESTADÍSTICAS DEL PARTIDO</h2>
+      <p>Durante un partido, un jugador consigue exactamente 37 puntos mediante 15 canastas.</p>
+      <p>Cada canasta vale 2 o 3 puntos. No ha anotado tiros libres.</p>
+      <p><strong>¿Cuántos triples ha conseguido?</strong></p>
+      <form class="check" data-step="2" autocomplete="off" novalidate>
+        <label for="i2">Respuesta</label>
+        <input id="i2" type="text" inputmode="numeric" maxlength="3" enterkeyhint="go">
+        <button class="btn" type="submit">Verificar respuesta</button>
+        <p class="msg" role="status" aria-live="polite"></p>
+      </form>
+      <button class="btn ghost next" data-goto="3" type="button" hidden>Continuar</button>
+    </article>
+  </section>
+
+  <section class="phase" id="s3" data-step="3" hidden>
+    <article class="card tense">
+      <figure class="photo" data-file="images/traje.jpeg">
+        <img src="images/traje.jpeg" alt="Mi padre y sus dos hijos vestidos de traje" onerror="this.parentNode.classList.add('missing')">
+        <figcaption>Prueba fotográfica B</figcaption>
+      </figure>
+      <div class="body">
+        <p class="meta alert">Última investigación · Prioridad máxima</p>
+        <h2>EXPEDIENTE 03 — TRES SUJETOS</h2>
+        <p>Tres cifras forman el código final. Cada pista describe exactamente cuántos dígitos son correctos y si están colocados en la posición adecuada.</p>
+        <ul class="clues">
+          <li><b>682</b>: una cifra es correcta y está bien colocada.</li>
+          <li><b>614</b>: una cifra es correcta, pero está mal colocada.</li>
+          <li><b>206</b>: dos cifras son correctas, pero ambas están mal colocadas.</li>
+          <li><b>738</b>: ninguna cifra es correcta.</li>
+          <li><b>780</b>: una cifra es correcta, pero está mal colocada.</li>
+        </ul>
+        <p><strong>¿Qué código de tres cifras abre el expediente?</strong></p>
+        <form class="check" data-step="3" autocomplete="off" novalidate>
+          <label for="i3">Código de tres cifras</label>
+          <input id="i3" class="code" type="text" inputmode="numeric" maxlength="3" pattern="[0-9]*" placeholder="···" enterkeyhint="go">
+          <button class="btn" type="submit">Abrir expediente</button>
+          <p class="msg" role="status" aria-live="polite"></p>
+        </form>
+        <button class="btn ghost next" data-goto="4" type="button" hidden>Continuar</button>
+      </div>
+    </article>
+  </section>
+
+  <section class="phase" id="s4" data-step="4" hidden>
+    <article class="card final">
+      <figure class="photo big" data-file="images/sonrisa.jpeg">
+        <img src="images/sonrisa.jpeg" alt="Mi padre sonriendo" onerror="this.parentNode.classList.add('missing')">
+      </figure>
+      <h2>EXPEDIENTE FINAL — CASO RESUELTO</h2>
+      <div class="letter"><p class="bday">¡Felices 50!!!</p></div>
+      <p class="hint">Busca tu regalo aquí: <strong id="hide"></strong></p>
+    </article>
+  </section>
+</main>
+
+<footer><button class="reset" id="resetBtn" type="button">Reiniciar misión</button></footer>
+
+<div class="overlay" id="flash" aria-live="assertive"><span id="flashTxt"></span></div>
+<div class="overlay modal" id="confirm" role="dialog" aria-modal="true" aria-labelledby="cTitle">
+  <div class="box">
+    <h3 id="cTitle">¿Reiniciar la misión?</h3>
+    <p>Se borrará todo el progreso y volverás al principio.</p>
+    <div class="row">
+      <button class="btn ghost" id="cNo" type="button">Cancelar</button>
+      <button class="btn" id="cYes" type="button">Reiniciar</button>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
